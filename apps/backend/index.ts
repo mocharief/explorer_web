@@ -7,18 +7,13 @@ import { buildFolderTree } from './composables/useBuilderTree';
 
 const app = new Elysia().use(cors());
 
-app.get('/folders', async () => {
+app.get('api/v1//folders', async () => {
   const all = await db.select().from(folders);
   const tree = buildFolderTree(all);
   return tree;
 });
 
-app.get('/folders/:id/children', async ({ params }) => {
-  const children = await db.select().from(folders).where(eq(folders.parentId, Number(params.id)));
-  return children;
-});
-
-app.get('/folders/:id/files', async ({ params }) => {
+app.get('api/v1//folders/:id/files', async ({ params }) => {
   const fileList = await db.select().from(files).where(eq(files.folderId, Number(params.id)));
   return fileList;
 });

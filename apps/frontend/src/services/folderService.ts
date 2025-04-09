@@ -1,6 +1,7 @@
 import type { Folder } from '../types/Folder';
+import type { File } from '../types/File';
 
-const BASE_URL = 'http://localhost:3000'; // adjust if needed
+const BASE_URL = 'http://localhost:3000/api/v1/'; // adjust if needed
 
 export async function fetchAllFolders(): Promise<Folder[]> {
   const res = await fetch(`${BASE_URL}/folders`);
@@ -8,8 +9,8 @@ export async function fetchAllFolders(): Promise<Folder[]> {
   return res.json();
 }
 
-export async function selectedFolders(folderId: number): Promise<Folder[]> {
-  const res = await fetch(`${BASE_URL}/folders/${folderId}/children`);
-  if (!res.ok) throw new Error('Failed to fetch folders');
+export async function selectedFiles(folderId: number): Promise<File[]> {
+  const res = await fetch(`${BASE_URL}/folders/${folderId}/files`);
+  if (!res.ok) throw new Error('Failed to fetch files');
   return res.json();
 }

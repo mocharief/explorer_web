@@ -4,7 +4,7 @@
       <FolderTree :folders="folders" :selected="selectedFolder" @select="selectFolder" />
     </div>
     <div class="right-panel">
-      <FolderList :selected="selectedFolder" />
+      <FolderList :selected="selectedFolder" :selectedFiles="currentFileList" />
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@ import FolderTree from './components/FolderTree.vue';
 import FolderList from './components/FolderList.vue';
 import { useFolders } from './composables/useFolders';
 
-const { folders, selectedFolder, loadFolders, selectFolder } = useFolders();
+const { folders, selectedFolder, currentFileList, loadFolders, selectFolder } = useFolders();
 loadFolders();
 </script>
 

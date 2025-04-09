@@ -1,10 +1,12 @@
 import { ref } from 'vue';
 import type { Folder } from '../types/Folder';
-import { fetchAllFolders } from '../services/folderService';
+import type { File } from '../types/File';
+import { fetchAllFolders, selectedFiles } from '../services/folderService';
 
 export function useFolders() {
   const folders = ref<Folder[]>([]);
   const selectedFolder = ref<Folder | null>(null);
+  const currentFileList = ref<File[] | null>(null);
 
   async function loadFolders() {
     try {
@@ -17,6 +19,7 @@ export function useFolders() {
 
   async function selectFolder(folder: Folder) {
     try {
+      currentFileList.value = await selectedFiles(folder.id);
       selectedFolder.value = folder;
     } catch (err) {
       console.error('Error loading folders:', err);
@@ -26,6 +29,7 @@ export function useFolders() {
   return {
     folders,
     selectedFolder,
+    currentFileList,
     loadFolders,
     selectFolder,
   };
