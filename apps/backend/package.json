@@ -10,6 +10,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.2.0",
     "drizzle-orm": "^0.41.0",
     "elysia": "^1.2.25",
     "mysql2": "^3.14.0"

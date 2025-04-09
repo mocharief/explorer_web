@@ -1,4 +1,4 @@
-# expoler_web
+# explorer_web
 
 Adding Table:
 

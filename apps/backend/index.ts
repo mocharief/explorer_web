@@ -2,12 +2,15 @@ import { Elysia } from 'elysia';
 import { db } from './drizzle.config';
 import { folders, files } from './db/schema';
 import { eq } from 'drizzle-orm';
+import { cors } from '@elysiajs/cors';
+import { buildFolderTree } from './composables/useBuilderTree';
 
-const app = new Elysia();
+const app = new Elysia().use(cors());
 
 app.get('/folders', async () => {
   const all = await db.select().from(folders);
-  return all;
+  const tree = buildFolderTree(all);
+  return tree;
 });
 
 app.get('/folders/:id/children', async ({ params }) => {
