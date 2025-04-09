@@ -67,4 +67,11 @@ cd .\apps\backend\
 bun run index.ts
 ```
 
+To run web app:
+
+```bash
+cd .\apps\frontend\
+bun run dev
+```
+
 This project was created using `bun init` in bun v1.2.8. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
